@@ -2,7 +2,7 @@
 
 A Chrome frontend to send requests the FakeAI Classifier Server.
 
-![a screenshot of FakeAI UI](docs/open.png){width=500}
+<img src="docs/open.png" alt="a screenshot of FakeAI UI" width="500"/>
 
 ### Building and installing
 
