@@ -1,27 +1,241 @@
-<html>
+<html style="background-color: transparent;" class="dark">
     <head>
-        <link rel="stylesheet" type="text/css" href="./options.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+        <style>
+            .poppins-thin {
+                font-family: "Poppins", sans-serif;
+                font-weight: 100;
+                font-style: normal;
+            }
+            
+            .poppins-extralight {
+                font-family: "Poppins", sans-serif;
+                font-weight: 200;
+                font-style: normal;
+            }
+            
+            .poppins-light {
+                font-family: "Poppins", sans-serif;
+                font-weight: 300;
+                font-style: normal;
+            }
+            
+            .poppins-regular {
+                font-family: "Poppins", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+            
+            .poppins-medium {
+                font-family: "Poppins", sans-serif;
+                font-weight: 500;
+                font-style: normal;
+            }
+            
+            .poppins-semibold {
+                font-family: "Poppins", sans-serif;
+                font-weight: 600;
+                font-style: normal;
+            }
+            
+            .poppins-bold {
+                font-family: "Poppins", sans-serif;
+                font-weight: 700;
+                font-style: normal;
+            }
+            
+            .poppins-extrabold {
+                font-family: "Poppins", sans-serif;
+                font-weight: 800;
+                font-style: normal;
+            }
+            
+            .poppins-black {
+                font-family: "Poppins", sans-serif;
+                font-weight: 900;
+                font-style: normal;
+            }
+            
+            .poppins-thin-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 100;
+                font-style: italic;
+            }
+            
+            .poppins-extralight-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 200;
+                font-style: italic;
+            }
+            
+            .poppins-light-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 300;
+                font-style: italic;
+            }
+            
+            .poppins-regular-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 400;
+                font-style: italic;
+            }
+            
+            .poppins-medium-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 500;
+                font-style: italic;
+            }
+            
+            .poppins-semibold-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 600;
+                font-style: italic;
+            }
+            
+            .poppins-bold-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 700;
+                font-style: italic;
+            }
+            
+            .poppins-extrabold-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 800;
+                font-style: italic;
+            }
+            
+            .poppins-black-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 900;
+                font-style: italic;
+            }
+        </style>
+
+        <link rel="stylesheet" type="text/css" href="./popup.css">
+        <link rel="stylesheet" type="text/css" href="../flowbite_dist/flowbite.min.css">
+        <link rel="stylesheet" type="text/css" href="../apexcharts_dist/apexcharts.css">
     </head>
-    <body>
-        <div class="px-6 py-2">
-            <h1 class="text-gray-500 text-2xl">Options Page</h1>
-            <p class="py-2 text-lg tracking-wide">
-                Update me in <span class="inline-block bg-gray-100 rounded-sm text-sm p-1 leading-none whitespace-no-wrap text-purple-600 font-mono align-baseline">`src/options/index.html`</span>
-            </p>
-            <label class="md:w-2/3 block text-gray-500 font-bold">
-              <input class="mr-2 leading-tight" type="checkbox" checked>
-              <span class="text-sm">
-                Send me your newsletter!
-              </span>
-            </label>
-            <div class="py-2">
-                <button
-                    class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-                >
-                    Save
-                </button>
+    <body class="max-w-full min-w-full min-h-full overflow-hidden m-0 dark:bg-gray-900">
+        <div class="max-w-full min-w-full min-h-full dark:bg-slate-800 px-6 py-6 ring-1 ring-slate-900/5 shadow-xl"> 
+            <div>
+                <!-- STARTING WIDGET VIEW -->
+
+                <div class="max-w-sm w-full p-4">
+                    <div class="flex justify-between mb-3">
+                      <div class="flex items-center">
+                        <div class="flex justify-center items-center">
+                          <h5 class="text-xl font-bold leading-none text-white pe-1 poppins-semibold">FakeAI Analysis</h5>
+
+                          <svg data-popover-target="chart-info" data-popover-placement="bottom" class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white cursor-pointer ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z"/>
+                          </svg>
+
+                          <!-- popover information window -->
+                          <div data-popover id="chart-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+                              <div class="p-3 space-y-2">
+                                  <h3 class="font-semibold text-gray-900 dark:text-white">LR Model</h3>
+                                  <p>The Logistic Regression model computes the probability of an event occurrence. It is a special case of linear regression where the target variable is categorical in nature. It uses a log of odds as the dependent variable..</p>
+                                  
+                                  <h3 class="font-semibold text-gray-900 dark:text-white">DT Model</h3>
+                                  <p>The Decision Tree model is a non-parametric supervised learning method with the goal to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.</p>
+                                  
+                                  <h3 class="font-semibold text-gray-900 dark:text-white">GBC Model</h3>
+                                  <p>The Gradient Boosting algorithm builds an additive model in a forward stage-wise fashion; it allows for the optimization of arbitrary differentiable loss functions (often using a series of decision trees).</p>
+
+                                  <h3 class="font-semibold text-gray-900 dark:text-white">RFC Model</h3>
+                                  <p>The Random Forest is a meta estimator that fits a number of decision tree classifiers on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting</p>
+
+                                  <h3 class="font-semibold text-gray-900 dark:text-white">Overall Calculation</h3>
+                                  <p>The scores of each of the 4 models are weighted by their accuracy post-training and then averaged to produce an overall score.</p>
+
+                                  <!-- update this github link eventually-->
+                                  <a href="https://github.com/CoderElectronics/FakeAI" class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700 hover:underline">Read more <svg class="w-2 h-2 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a>
+                              </div>
+                              <div data-popper-arrow></div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg mt-8">
+                      <div class="grid grid-cols-3 gap-3 mb-2">
+                        <dl class="bg-orange-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
+                          <dt class="w-8 h-8 bg-orange-100 dark:bg-gray-600 text-orange-600 dark:text-orange-300 text-sm font-medium flex items-center justify-center mb-1 poppins-semibold" id="meta_weightedAvg">0%</dt>
+                          <dd class="text-orange-600 dark:text-orange-300 text-sm font-medium poppins-semibold">Overall</dd>
+                        </dl>
+                        <dl class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
+                          <dt class="w-8 h-8 bg-teal-100 dark:bg-gray-600 text-teal-600 dark:text-teal-300 text-sm font-medium flex items-center justify-center mb-1 poppins-semibold" id="meta_lowestPred">0%</dt>
+                          <dd class="text-teal-600 dark:text-teal-300 text-sm font-medium poppins-semibold">Lowest</dd>
+                        </dl>
+                        <dl class="bg-blue-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
+                          <dt class="w-8 h-8 bg-blue-100 dark:bg-gray-600 text-blue-600 dark:text-blue-300 text-sm font-medium flex items-center justify-center mb-1 poppins-semibold" id="meta_numArticles">0.0k</dt>
+                          <dd class="text-blue-600 dark:text-blue-300 text-sm font-medium poppins-semibold">Articles</dd>
+                        </dl>
+                      </div>
+
+                      <button data-collapse-toggle="more-details" type="button" class="hover:underline text-xs text-gray-500 dark:text-gray-400 font-medium inline-flex items-center">Show more details <svg class="w-2 h-2 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                        </svg>
+                      </button>
+
+                      <div id="more-details" class="border-gray-200 border-t dark:border-gray-600 pt-3 mt-3 space-y-2 hidden">
+                        <dl class="flex items-center justify-between">
+                          <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal">Average model accuracy:</dt>
+                          <dd class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
+                            <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+                            </svg><span id="meta_modelAccuracy">96.4%</span>
+                          </dd>
+                        </dl>
+                        <dl class="flex items-center justify-between">
+                          <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal">Processing time:</dt>
+                          <dd class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-gray-600 dark:text-gray-300" id="meta_responseTime">130 ms</dd>
+                        </dl>
+                        <dl class="flex items-center justify-between">
+                          <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal">Last model update:</dt>
+                          <dd class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-gray-600 dark:text-gray-300" id="meta_modelDate">5/9/24</dd>
+                        </dl>
+                      </div>
+
+                    </div>
+                  
+                    <!-- Radial Chart -->
+                    <div class="pb-6 pt-8" id="radial-chart"></div>
+                  
+                    <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+                      <div class="flex justify-between items-center pt-5">
+                        <a
+                          href="#"
+                          class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+                          Report Issue
+                          <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                </div>
+
+                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm poppins-regular pb-2 px-3 pt-2" id="meta_descContent">The content is most likely true. The models have not all predicted that it is true, but the average is above 70%.</p>
+                  
+                <!-- ENDING WIDGET VIEW -->
             </div>
         </div>
+
+        <div class="absolute bottom-7 right-7">
+            <button class="text-slate-100 font-semibold py-2 px-4 border border-slate-100 rounded shadow poppins-semibold-italic" id="closeButton">
+                Close
+            </button>
+        </div>
+
+        <script src="../flowbite_dist/flowbite.min.js"></script>
+        <script src="../apexcharts_dist/apexcharts.min.js"></script>
         <script type="text/javascript" src="./options.dist.js"></script>
     </body>
 </html>

@@ -1,5 +1,3 @@
-import Alpine from 'alpinejs'
- 
-window.Alpine = Alpine
- 
-Alpine.start()
+/* nothing here */
+
+document.getElementById('closeButton').addEventListener("click", () => {window.close()});

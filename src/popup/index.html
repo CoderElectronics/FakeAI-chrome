@@ -1,28 +1,136 @@
-<html>
+<html style="background-color: transparent;" class="dark">
     <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+        <style>
+            .poppins-thin {
+                font-family: "Poppins", sans-serif;
+                font-weight: 100;
+                font-style: normal;
+            }
+            
+            .poppins-extralight {
+                font-family: "Poppins", sans-serif;
+                font-weight: 200;
+                font-style: normal;
+            }
+            
+            .poppins-light {
+                font-family: "Poppins", sans-serif;
+                font-weight: 300;
+                font-style: normal;
+            }
+            
+            .poppins-regular {
+                font-family: "Poppins", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+            
+            .poppins-medium {
+                font-family: "Poppins", sans-serif;
+                font-weight: 500;
+                font-style: normal;
+            }
+            
+            .poppins-semibold {
+                font-family: "Poppins", sans-serif;
+                font-weight: 600;
+                font-style: normal;
+            }
+            
+            .poppins-bold {
+                font-family: "Poppins", sans-serif;
+                font-weight: 700;
+                font-style: normal;
+            }
+            
+            .poppins-extrabold {
+                font-family: "Poppins", sans-serif;
+                font-weight: 800;
+                font-style: normal;
+            }
+            
+            .poppins-black {
+                font-family: "Poppins", sans-serif;
+                font-weight: 900;
+                font-style: normal;
+            }
+            
+            .poppins-thin-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 100;
+                font-style: italic;
+            }
+            
+            .poppins-extralight-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 200;
+                font-style: italic;
+            }
+            
+            .poppins-light-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 300;
+                font-style: italic;
+            }
+            
+            .poppins-regular-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 400;
+                font-style: italic;
+            }
+            
+            .poppins-medium-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 500;
+                font-style: italic;
+            }
+            
+            .poppins-semibold-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 600;
+                font-style: italic;
+            }
+            
+            .poppins-bold-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 700;
+                font-style: italic;
+            }
+            
+            .poppins-extrabold-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 800;
+                font-style: italic;
+            }
+            
+            .poppins-black-italic {
+                font-family: "Poppins", sans-serif;
+                font-weight: 900;
+                font-style: italic;
+            }
+        </style>
+
         <link rel="stylesheet" type="text/css" href="./popup.css">
     </head>
-    <body>
-        <div class="p-6 min-w-2xl h-64">
-            <h1 class="text-gray-500 text-2xl">Hello Web Extension</h1>
-            <p class="py-2 text-lg tracking-wide">
-                Update me in <span class="inline-block bg-gray-100 rounded-sm text-sm p-1 leading-none whitespace-no-wrap text-purple-600 font-mono align-baseline">`src/popup/index.html`</span>
-            </p>
-            <hr />
-            <div class="py-2" x-data="{ open: false }">
-                <button
-                    class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-                    @click="open = true"
-                >
-                    Test Alpine
-                </button>
-
-                <div
-                    class="mt-4 bg-gray-100 text-center rounded-sm"
-                    x-show="open"
-                    @click.away="open = false"
-                >
-                    <div class="w-full text-4xl text-teal-500 p-4">Great Scott!</div>
+    <body>    
+        <div class="w-72 dark:bg-slate-800 px-6 py-6 ring-1 ring-slate-900/5 shadow-xl">
+            <h2 class="text-slate-900 dark:text-white text-base font-medium tracking-tight poppins-semibold">FakeAI</h3>
+            
+            <div>
+                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm poppins-regular">
+                    Select some text on the page and use <b>Right Click > Send to FakeAI</b> to engage FakeAI.
+                </p>
+                
+                <div class="grid justify-items-stretch pt-2 pb-1">
+                    <div class="justify-self-end">
+                        <button class="text-slate-100 font-semibold py-2 px-4 border border-slate-100 rounded shadow poppins-regular" id="closeButton">
+                            Close
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ["./src/**/*.{html,js}", "./node_modules/flowbite/**/*.js"],
   theme: {
     minWidth: {
       '0': '0',
@@ -9,5 +9,10 @@ module.exports = {
     extend: {}
   },
   variants: {},
-  plugins: []
+  plugins: [
+    require('flowbite/plugin')({
+        charts: true,
+    })
+  ],
+  darkMode: 'class'
 }
