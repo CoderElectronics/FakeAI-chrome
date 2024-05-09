@@ -111,6 +111,10 @@ chrome.runtime.onConnect.addListener(function(port) {
 
 document.getElementById('closeButton').addEventListener("click", () => {window.close()});
 
+chrome.tabs.onActivated.addListener(async ({ tabId }) => {
+    window.close();
+});
+
 /* Proper init function is here */
 (function(){
     if (document.getElementById("radial-chart") && typeof ApexCharts !== 'undefined') {
