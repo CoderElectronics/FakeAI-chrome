@@ -6,7 +6,10 @@
     "dev:tailwind": "NODE_ENV=development postcss src/tailwind.css -o extension/dist/tailwind.dist.css",
     "build:tailwind": "NODE_ENV=production postcss src/tailwind.css -o extension/dist/tailwind.dist.css",
     "dev": "concurrently \"npm run watch:tailwind\" \"NODE_ENV=development webpack --config webpack.config.js --mode=development --watch\"",
-    "build": "npm run build:tailwind && webpack --mode production"
+    "build": "npm run build:tailwind && webpack --mode production && npm run build:crx",
+    "build:local": "npm run build:tailwind && webpack --mode production",
+    "build:crx": "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --pack-extension=./extension --pack-extension-key=./extension.pem",
+    "clean": "rm -rf extension/dist && rm extension.crx"
   },
   "devDependencies": {
     "alpinejs": "^3.7.1",
