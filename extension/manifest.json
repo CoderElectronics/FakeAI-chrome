@@ -26,13 +26,20 @@
     "512": "./dist/icons/logo_512.png"
   },
 
-  "permissions": ["contextMenus", "tabs", "notifications", "sidePanel", "scripting", "activeTab"],
+  "permissions": [
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "sidePanel",
+    "scripting",
+    "activeTab"
+  ],
 
   "host_permissions": [
-    "http://localhost:5000/*",
-    "https://localhost:5000/*",
-    "http://127.0.0.1:5000/*",
-    "https://127.0.0.1:5000/*"
+    "http://localhost:8003/*",
+    "https://localhost:8003/*",
+    "http://127.0.0.1:8003/*",
+    "https://127.0.0.1:8003/*"
   ],
 
   "background": {
