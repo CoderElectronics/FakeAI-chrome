@@ -11,7 +11,17 @@ async function send_classifier_req(text) {
     referrerPolicy: "no-referrer",
     body: JSON.stringify({ text: text }), // body data type must match "Content-Type" header
   });
-  return response.json();
+
+  try {
+    return response.json();
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      // Unexpected token < in JSON
+      console.log('There was a SyntaxError in API response:', error);
+    } else {
+      console.log('There was an error while sending request:', error);
+    }
+  }
 }
 
 function updatePropsByID(props) {
