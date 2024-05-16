@@ -83,7 +83,12 @@ const getChartOptions = (lr, dt, gbc, rfc) => {
 chrome.runtime.onConnect.addListener(function (port) {
   if (port.name == "fakeai_port") {
     port.onMessage.addListener(function (msg) {
+      /* add loading overview pre-request */
+      document.getElementById("loadingView").style.display = "block";
+
       send_classifier_req(msg.text).then((data) => {
+        /* post-request data processing */
+        document.getElementById("loadingView").style.display = "none";
         console.log(data);
 
         updatePropsByID({
