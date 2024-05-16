@@ -98,7 +98,10 @@ chrome.runtime.onConnect.addListener(function (port) {
 
       send_classifier_req(msg.text).then((data) => {
         /* post-request data processing */
-        document.getElementById("loadingView").style.display = "none";
+        setTimeout(() => {
+          document.getElementById("loadingView").style.display = "none";
+        }, 500);
+
         console.log(data);
 
         updatePropsByID({
