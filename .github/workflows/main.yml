@@ -1,0 +1,85 @@
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    name: Build and replace the latest release extension zip
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Use node.js latest
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Setup chrome browser
+        uses: browser-actions/setup-chrome@v1
+
+      - name: (debug) Show chrome version
+        run: chrome --version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate private key
+        run: npm run genkey
+
+      - name: Build extension packages
+        run: npm run build
+
+      - name: Upload extension ZIP
+        uses: actions/upload-artifact@v3
+        with:
+          name: fakeai-latest
+          path: dist/extension_webstore.zip
+          retention-days: 15
+          if-no-files-found: error
+
+      - name: Upload extension CRX
+        uses: actions/upload-artifact@v3
+        with:
+          name: fakeai-latest
+          path: dist/extension.crx
+          retention-days: 15
+          if-no-files-found: error
+
+  upload:
+    name: Upload latest release
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: fakeai-latest
+          path: fakeai-latest
+
+      - name: Get short hash
+        id: vars
+        shell: bash
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - uses: dev-drprasad/delete-older-releases@v0.3.3
+        with:
+          keep_latest: 1
+          keep_min_download_counts: 1
+          delete_expired_data: 10
+          delete_tag_pattern: latest-*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload binaries to release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          title: "(latest) Extension build ${{ steps.vars.outputs.sha_short }}"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          files: fakeai-latest/*
+          automatic_release_tag: "latest-${{ steps.vars.outputs.sha_short }}"
+          prerelease: false
