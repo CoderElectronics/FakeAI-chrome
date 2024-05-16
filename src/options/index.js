@@ -1,5 +1,5 @@
 async function send_classifier_req(text) {
-  const response = await fetch("http://127.0.0.1:8003/classify", {
+  const response = await fetch("https://fakeai-api.astehneylabs.com/classify", {
     method: "POST",
     mode: "cors",
     cache: "no-cache",

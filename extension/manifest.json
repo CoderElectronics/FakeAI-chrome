@@ -36,6 +36,8 @@
   ],
 
   "host_permissions": [
+    "http://fakeai-api.astehneylabs.com/*",
+    "https://fakeai-api.astehneylabs.com/*",
     "http://localhost:8003/*",
     "https://localhost:8003/*",
     "http://127.0.0.1:8003/*",
