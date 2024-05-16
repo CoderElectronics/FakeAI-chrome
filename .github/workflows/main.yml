@@ -83,5 +83,6 @@ jobs:
           file: fakeai-latest/*
           tag: latest
           overwrite: true
+          file_glob: true
           release_name: "Latest extension build ${{ steps.vars.outputs.sha_short }}"
           body: "Pre-built extension files for commit ${{ steps.vars.outputs.sha_short }}. Unzip the extension_webstore.zip file and click the 'Load Unpacked' button in chrome://extensions to install the extension in Chrome browser."
