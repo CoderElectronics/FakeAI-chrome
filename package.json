@@ -1,5 +1,5 @@
 {
-  "name": "fakeai_chrome",
+  "name": "fakeai-chrome",
   "version": "1.0.0",
   "scripts": {
     "watch:tailwind": "NODE_ENV=development postcss src/tailwind.css -o extension/dist/tailwind.dist.css -w",
