@@ -23,7 +23,7 @@ jobs:
         uses: browser-actions/setup-chrome@v1
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --force
 
       - name: Generate private key
         run: npm run genkey
