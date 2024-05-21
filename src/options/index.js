@@ -1,5 +1,11 @@
 async function send_classifier_req(text) {
-  const response = await fetch("https://fakeai-api.astehneylabs.com/classify", {
+  serverURL = "https://fakeai-api.astehneylabs.com/classify";
+
+  if (document.getElementById("localApiToggle").checked == true) {
+    serverURL = "http://localhost:8003/classify";
+  }
+
+  const response = await fetch(serverURL, {
     method: "POST",
     mode: "cors",
     cache: "no-cache",

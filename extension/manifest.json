@@ -26,7 +26,7 @@
     "512": "./dist/icons/logo_512.png"
   },
 
-  "permissions": ["contextMenus", "tabs", "sidePanel"],
+  "permissions": ["contextMenus", "sidePanel"],
 
   "host_permissions": [
     "http://fakeai-api.astehneylabs.com/*",
