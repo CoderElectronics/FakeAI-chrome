@@ -1,31 +1,47 @@
+/* classifier server request code */
+statusMsgs = [
+  "All models predict that the article is true.",
+  "Some models have flagged the article as fake, it may exhibit some trends of a fake article.",
+  "The article is most likely fake, as all models have predicted it to be so.",
+];
+
+truthscoreMsgs = ["True", "Maybe", "Fake"];
+
+serverURLs = [
+  "https://fakeai-api.astehneylabs.com/classify", // main public API
+  "http://localhost:8003/classify", // local backup API
+];
+
 async function send_classifier_req(text) {
-  serverURL = "https://fakeai-api.astehneylabs.com/classify";
-
-  if (document.getElementById("localApiToggle").checked == true) {
-    serverURL = "http://localhost:8003/classify";
-  }
-
-  const response = await fetch(serverURL, {
-    method: "POST",
-    mode: "cors",
-    cache: "no-cache",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    redirect: "error",
-    referrerPolicy: "no-referrer",
-    body: JSON.stringify({ text: text }), // body data type must match "Content-Type" header
-  });
-
   try {
+    const response = await fetch(
+      document.getElementById("localApiToggle").checked
+        ? serverURLs[1]
+        : serverURLs[0],
+      {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "error",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({ text: text }), // body data type must match "Content-Type" header
+      },
+    );
+
     return response.json();
   } catch (error) {
+    document.getElementById("loadingView").style.display = "none";
+    document.getElementById("loadingError").style.display = "block";
+
     if (error instanceof SyntaxError) {
       // Unexpected token < in JSON
-      console.log('There was a SyntaxError in API response:', error);
+      console.log("There was a SyntaxError in API response:", error);
     } else {
-      console.log('There was an error while sending request:', error);
+      console.log("There was an error while sending request:", error);
     }
   }
 }
@@ -108,24 +124,24 @@ chrome.runtime.onConnect.addListener(function (port) {
           document.getElementById("loadingView").style.display = "none";
         }, 500);
 
-        console.log(data);
+        /* calculate avg and choose msgs */
+        weightedAvg =
+          Math.round((data.weighted_avg * 100 + Number.EPSILON) * 1000) / 1000;
+
+        if (weightedAvg == 100) {
+          truthscoreMsg = truthscoreMsgs[0];
+          statusMsg = statusMsgs[0];
+        } else if (weightedAvg >= 50) {
+          truthscoreMsg = truthscoreMsgs[1];
+          statusMsg = statusMsgs[1];
+        } else {
+          truthscoreMsg = truthscoreMsgs[2];
+          statusMsg = statusMsgs[2];
+        }
 
         updatePropsByID({
-          meta_weightedAvg:
-            Math.round((data.weighted_avg * 100 + Number.EPSILON) * 1000) /
-              1000 +
-            "%",
-          meta_lowestPred:
-            Math.round(
-              (Math.min(
-                ...[data.pred_lr, data.pred_dt, data.pred_gbc, data.pred_rfc],
-              ) *
-                100 +
-                Number.EPSILON) *
-                100,
-            ) /
-              100 +
-            "%",
+          meta_weightedAvg: weightedAvg + "%",
+          meta_translatedStatus: truthscoreMsg,
           meta_numArticles: data.weights.num_training_articles,
           meta_modelAccuracy:
             Math.round(
@@ -144,7 +160,9 @@ chrome.runtime.onConnect.addListener(function (port) {
             Math.round((data.response_time + Number.EPSILON) * 1000) / 1000 +
             " s",
           meta_modelDate: data.weights.model_date,
-          meta_descContent: msg.text.slice(0, 250) + " ...",
+          meta_descContent: `
+            <p class="poppins-semibold-italic" id="meta_RO_descHtml">${msg.text.split(" ").slice(0, 15).join(" ")}...</p><br>${statusMsg}
+          `,
         });
 
         if (
@@ -170,6 +188,41 @@ chrome.runtime.onConnect.addListener(function (port) {
 
 document.getElementById("closeButton").addEventListener("click", () => {
   window.close();
+});
+
+document.getElementById("issueReportingButton").addEventListener("click", () => {
+  chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  }, ([currentTab]) => {
+    errContext = {
+      page_url: currentTab.url,
+      selection: document.getElementById("meta_RO_descHtml").innerHTML
+    }
+
+    console.log(errContext);
+
+    /* open reporting form */
+    document.getElementById("reportingForm").style.display = "block";
+    document.getElementById("hidden_error_context").value = JSON.stringify(errContext);
+  });
+});
+
+document.getElementById("closeReportingForm").addEventListener("click", () => {
+  document.getElementById("reportingForm").style.display = "none";
+});
+
+document.getElementById("errorFormSubmit").addEventListener("click", () => {
+  document.getElementById("reportingForm").style.display = "none";
+  document.getElementById("loadingSuccess").style.display = "block";
+});
+
+document.getElementById("closeErrModel").addEventListener("click", () => {
+  document.getElementById("loadingError").style.display = "none";
+});
+
+document.getElementById("closeSuccessModel").addEventListener("click", () => {
+  document.getElementById("loadingSuccess").style.display = "none";
 });
 
 chrome.tabs.onActivated.addListener(async ({ tabId }) => {

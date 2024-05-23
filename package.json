@@ -1,15 +1,16 @@
 {
   "name": "fakeai-chrome",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "scripts": {
     "watch:tailwind": "NODE_ENV=development postcss src/tailwind.css -o extension/dist/tailwind.dist.css -w",
     "dev:tailwind": "NODE_ENV=development postcss src/tailwind.css -o extension/dist/tailwind.dist.css",
     "build:tailwind": "NODE_ENV=production postcss src/tailwind.css -o extension/dist/tailwind.dist.css",
     "dev": "concurrently \"npm run watch:tailwind\" \"NODE_ENV=development webpack --config webpack.config.js --mode=development --watch\"",
-    "build": "mkdir -p dist && npm run build:local && npm run build:crx && npm run build:webstore",
+    "build": "mkdir -p dist && npm run build:updateversion && npm run build:local && npm run build:crx && npm run build:webstore",
     "build:local": "npm run build:tailwind && webpack --mode production",
     "build:crx": "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --pack-extension=./extension --pack-extension-key=./dist/extension.pem && mv extension.crx dist/",
     "build:webstore": "zip -vr dist/extension_webstore.zip extension/ -x '*.DS_Store'",
+    "build:updateversion": "echo $(jq .version=\"$(cat package.json | jq .version)\" extension/manifest.json) > extension/manifest.json",
     "genkey": "mkdir -p dist && openssl genrsa -out dist/priv.pem 768 && openssl pkcs8 -topk8 -nocrypt -in dist/priv.pem -out dist/extension.pem",
     "clean": "rm -rf dist/ && rm -rf extension/dist"
   },

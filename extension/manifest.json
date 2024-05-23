@@ -1,9 +1,8 @@
 {
   "name": "FakeAI",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Find fake news using Machine Learning.",
   "manifest_version": 3,
-
   "action": {
     "default_title": "FakeAI",
     "default_popup": "./dist/popup.html",
@@ -16,7 +15,6 @@
       "512": "./dist/icons/logo_512.png"
     }
   },
-
   "icons": {
     "32": "./dist/icons/logo_32.png",
     "48": "./dist/icons/logo_48.png",
@@ -25,9 +23,7 @@
     "256": "./dist/icons/logo_256.png",
     "512": "./dist/icons/logo_512.png"
   },
-
-  "permissions": ["contextMenus", "sidePanel"],
-
+  "permissions": ["contextMenus", "sidePanel", "tabs"],
   "host_permissions": [
     "http://fakeai-api.astehneylabs.com/*",
     "https://fakeai-api.astehneylabs.com/*",
@@ -36,15 +32,8 @@
     "http://127.0.0.1:8003/*",
     "https://127.0.0.1:8003/*"
   ],
-
-  "background": {
-    "service_worker": "selection.js"
-  },
-
-  "side_panel": {
-    "default_path": "./dist/options.html"
-  },
-
+  "background": { "service_worker": "selection.js" },
+  "side_panel": { "default_path": "./dist/options.html" },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self';",
     "sandbox": "sandbox allow-scripts allow-forms allow-popups allow-modals; script-src 'self' 'unsafe-inline' 'unsafe-eval'; child-src 'self';"
